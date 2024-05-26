@@ -1,4 +1,4 @@
-import Password from "../models/password.model"
+import Password from "../models/password.model.js"
 
 
 export const savePassword = async(req, res) => {

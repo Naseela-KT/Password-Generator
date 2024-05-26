@@ -1,7 +1,7 @@
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { CustomError } from "../error/custom.error";
+import { CustomError } from "../error/custom.error.js";
 
 export const signup = async (req, res) => {
   try {

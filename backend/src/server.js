@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import connectDB from "./config/db.config.js"
 import userRoutes from "./routes/user.route.js"
 import passwordRoutes from './routes/password.route.js'
+import cors from 'cors'
 
 dotenv.config()
 const port=process.env.PORT || 5000;

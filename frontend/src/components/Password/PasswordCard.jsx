@@ -11,8 +11,8 @@ import Checkboxes from "./Checkboxes";
 
 const PasswordCard = () => {
   return (
-    <div>
-      <Card className="mt-40 w-[600px] mx-auto align-items-center">
+    <div className="px-4 py-6">
+      <Card className="w-full max-w-[600px] mx-auto">
         <CardBody>
           <Typography
             variant="h5"
@@ -23,20 +23,15 @@ const PasswordCard = () => {
           </Typography>
           <Password />
 
-          {/* Changes */}
-          <Card className="mt-2 w-[550px] mx-auto align-items-center shadow-none">
+          <Card className="mt-2 w-full max-w-[550px] mx-auto shadow-none">
             <CardBody>
-             
               <CharacterLength />
-              <Checkboxes/>
+              <Checkboxes />
             </CardBody>
           </Card>
-
-
-
         </CardBody>
         <CardFooter className="pt-0 text-center">
-          <Button>Read More</Button>
+          <Button>Save Password</Button>
         </CardFooter>
       </Card>
     </div>
