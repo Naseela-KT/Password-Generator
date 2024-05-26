@@ -2,12 +2,12 @@ import axios from "axios";
 import { api } from "./api";
 
 const userApi = axios.create({
-  baseURL: api.authBaseURL,
+  baseURL: api.userBaseURL,
   withCredentials: true,
 });
 
 const pwdApi = axios.create({
-  baseURL: api.userBaseURL,
+  baseURL: api.pwdBaseURL,
   withCredentials: true,
 });
 

@@ -10,11 +10,47 @@ import {
   import { XIcon } from '@heroicons/react/outline';
   import { AuthContext } from "../../context/authContext"; 
   import { useContext } from "react";
-   
+  import {useDispatch} from 'react-redux'
+  import { useFormik } from "formik";
+  import toast from 'react-hot-toast'
+  import { validate } from "../../validations/LoginValidation";
+  import {userApiRequest} from '../../config/axios' 
+import {setUserCredentials} from '../../redux/authSlice'
+
+  const initialValues= {
+    email: "",
+    password: "",
+  };
+  
+
   const LoginCard=({onClose})=> {
+    const dispatch = useDispatch();
     const {handleSignupOpen}=useContext(AuthContext)
+    const formik = useFormik({
+      initialValues,
+      validate,
+      onSubmit: async(values) => {
+        console.log(values)
+        const response = await userApiRequest({
+          method: 'post',
+          url: '/login',
+          data:values
+        })
+        if(response.token){
+          toast.success("Login Successfull")
+          dispatch(setUserCredentials(response.userData))
+          localStorage.setItem('Token',response.token)
+          onClose()
+        }
+        if(response.error){
+          toast.error(`${response.error.response.data.message}`)
+        }
+      },
+    });
+
     return (
       <Card className="w-96">
+        <form onSubmit={formik.handleSubmit}>
         <CardBody className="flex flex-col gap-4">
         <div className="flex justify-between items-center">
           <Typography variant="h3" color="black" className="text-center">
@@ -25,13 +61,36 @@ import {
             onClick={onClose} // Adding the onClose prop to handle the close action
           />
         </div>
-          <Input label="Email" size="lg" />
-          <Input label="Password" size="lg" />
-        </CardBody>
-        <CardFooter className="pt-0">
-          <Button variant="gradient" fullWidth>
+      
+        <Input
+              label="Email"
+              size="sm"
+              crossOrigin={undefined}
+              color="black"
+              className="bg-white bg-opacity-50"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              name="email" onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          />
+          {formik.errors.email ? <p className="text-sm" style={{color:"red",marginBottom:-10,marginTop:-10}}>{formik.errors.email}</p> : null}
+          <Input
+              label="Password"
+              size="sm"
+              crossOrigin={undefined}
+              color="black"
+              className="bg-white bg-opacity-50"
+              onChange={formik.handleChange}
+              value={formik.values.password}
+              name="password"
+              type="password" onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          />
+          {formik.errors.password ? <p className="text-sm" style={{color:"red",padding:0,marginTop:-10}}>{formik.errors.password}</p> : null}
+          <Button variant="gradient" type="submit" fullWidth>
           Login
           </Button>
+         
+        </CardBody>
+        </form>
+        <CardFooter className="pt-0">
+          
           <Typography variant="small" className="mt-6 flex justify-center">
             Don&apos;t have an account?
             <Button variant="text" onClick={handleSignupOpen} className="-mt-2">
