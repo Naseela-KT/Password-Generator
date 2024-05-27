@@ -15,8 +15,9 @@ function App() {
     <NavbarDefault/>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/passwords" element={<SavedPassword />} />
+     
       <Route path="" element={<PrivateRoute/>}>
+      <Route path="/passwords" element={<SavedPassword />} />
       </Route>
     </Routes>
   </Router>

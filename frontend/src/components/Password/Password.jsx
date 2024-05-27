@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRefresh } from '@fortawesome/free-solid-svg-icons';
 
-const Password = () => {
+const Password = ({password}) => {
     const [copied, setCopied] = useState(false);
 
     const copyToClipboard = () => {
@@ -23,10 +24,10 @@ const Password = () => {
             <input 
               id="npm-install-copy-text" 
               type="text" 
-              className="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-              value="npm install flowbite" 
+              className="col-span-6 text-black bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+              value={password} 
               disabled 
-              readOnly 
+            
             />
             
             <div className="flex space-x-2 absolute right-2.5 top-1/2 transform -translate-y-1/2">

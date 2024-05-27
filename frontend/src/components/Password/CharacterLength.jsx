@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { Typography } from "@material-tailwind/react"
-import { useState } from "react";
 
-const CharacterLength = () => {
-  const [length, setLength] =useState(4);
+
+const CharacterLength = ({length,setLength}) => {
+ 
   return (
     <div className="flex flex-col text-white">
     <div className="flex justify-between mb-2">
@@ -13,7 +14,13 @@ const CharacterLength = () => {
       >
         Length
       </Typography>
-      <span>{length}</span> {/* Display the current length value */}
+      <Typography
+        variant="text"
+        color="blue-gray"
+        className="text-center"
+      >
+        {length}
+      </Typography>{/* Display the current length value */}
     </div>
     <input
       type="range"

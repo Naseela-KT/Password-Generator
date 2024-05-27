@@ -1,36 +1,22 @@
+/* eslint-disable react/prop-types */
 
 
-const Checkboxes = () => {
+const Checkboxes = ({checkboxData,handleCheckboxChange}) => {
     return (
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-5">
-      <div className="flex items-center space-x-1">
+      {checkboxData.map((checkbox,index)=>{
+        return(
+        <div key={index} className="flex items-center space-x-1">
         <input
           type="checkbox"
-          className="h-5 w-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-500"
+          onChange={() => handleCheckboxChange(index)}
+          checked={checkbox.state}
+          className="h-5 w-5 rounded focus:ring-2 focus:ring-gray-500"
         />
-        <label className="text-sm text-black-400">Uppercase</label>
+        <label className="text-sm text-black-400">{checkbox.title}</label>
       </div>
-      <div className="flex items-center space-x-1">
-        <input
-          type="checkbox"
-          className="h-5 w-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-500"
-        />
-        <label className="text-sm text-black-400">Lowercase</label>
-      </div>
-      <div className="flex items-center space-x-1">
-        <input
-          type="checkbox"
-          className="h-5 w-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-500"
-        />
-        <label className="text-sm text-black-400">Numbers</label>
-      </div>
-      <div className="flex items-center space-x-1">
-        <input
-          type="checkbox"
-          className="h-5 w-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-500"
-        />
-        <label className="text-sm text-black-400">Symbols</label>
-      </div>
+        )
+      })}
     </div>
       );
 }
