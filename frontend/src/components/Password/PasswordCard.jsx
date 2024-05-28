@@ -2,7 +2,6 @@ import {
   Card,
   CardBody,
   CardFooter,
-  Typography,
   Button,
 } from "@material-tailwind/react";
 import Password from "./Password";
@@ -60,19 +59,14 @@ const PasswordCard = () => {
   }
 
   return (
-    <div className="px-4 py-6">
-      <Card className="w-full max-w-[600px] mx-auto">
+    <div className="px-4 py-8">
+    
+      <Card className="w-full max-w-[600px] mx-auto bg-[#3AB795]">
         <CardBody>
-          <Typography
-            variant="h5"
-            color="blue-gray"
-            className="mb-3 text-center uppercase"
-          >
-            Password Generator
-          </Typography>
+         
           {password && <Password password={password} handleRefresh={handleRefresh}/>}
 
-          <Card className="mt-2 w-full max-w-[550px] mx-auto shadow-none">
+          <Card className="-mt-2 w-full max-w-[580px] mx-auto shadow-none bg-[#3AB795]">
             <CardBody>
               <CharacterLength length={length} setLength={setLength} />
               <Checkboxes
@@ -86,8 +80,8 @@ const PasswordCard = () => {
             </CardBody>
           </Card>
         </CardBody>
-        <CardFooter className="pt-0 text-center">
-          <Button onClick={handleSavePassword}>Save Password</Button>
+        <CardFooter className="-mt-2 pt-0 text-center">
+          <Button onClick={handleSavePassword} className="hover:bg-white hover:text-black" color="white" size="sm" variant="outlined">Save Password</Button>
         </CardFooter>
       </Card>
     </div>

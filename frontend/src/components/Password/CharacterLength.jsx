@@ -9,27 +9,28 @@ const CharacterLength = ({length,setLength}) => {
     <div className="flex justify-between mb-2">
       <Typography
         variant="text"
-        color="blue-gray"
+        color="white"
         className="text-center"
       >
         Length
       </Typography>
       <Typography
         variant="text"
-        color="blue-gray"
+        color="white"
         className="text-center"
       >
         {length}
       </Typography>{/* Display the current length value */}
     </div>
     <input
-      type="range"
-      min="4"
-      max="50"
-      value={length}
-      onChange={(e) => setLength(e.target.value)}
-      className="w-full"
-    />
+  type="range"
+  min="4"
+  max="50"
+  value={length}
+  onChange={(e) => setLength(e.target.value)}
+  className="w-full"
+/>
+
   </div>
   )
 }

@@ -49,7 +49,7 @@ import {setUserCredentials} from '../../redux/authSlice'
     });
 
     return (
-      <Card className="w-96">
+      <Card className="w-96 ">
         <form onSubmit={formik.handleSubmit}>
         <CardBody className="flex flex-col gap-4">
         <div className="flex justify-between items-center">

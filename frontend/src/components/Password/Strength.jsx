@@ -27,15 +27,15 @@ const Strength = ({ password }) => {
 
   if (!passwordStren) return <React.Fragment />;
   return (
-    <div className="md:flex justify-between items-center ml-2">
+    <div className="md:flex justify-between items-center ml-2 mt-1">
       <div>
       <Typography
-            variant="text"
-            color="blue-gray"
+            variant="small"
+            color="white"
             className="mb-3 text-center"
           >
-           Strength
-           <span className="text-md font-bold pl-3 text-blue-400">
+           Strength : 
+           <span className="text-md font-bold pl-3 text-[#3e4492]">
           {passwordStren}
         </span>
           </Typography>

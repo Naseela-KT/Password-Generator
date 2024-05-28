@@ -9,7 +9,7 @@ const Auth = ({ isVisible, onClose }) => {
   return (
     <>
     {isVisible && (
-      <div className="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+      <div className="fixed inset-0 z-50 bg-gray-800 bg-opacity-70 flex justify-center items-center">
        {signupModal?<Signup onClose={onClose}/>:<Login  onClose={onClose} />}
       </div>
     )}

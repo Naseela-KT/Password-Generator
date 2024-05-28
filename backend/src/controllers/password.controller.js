@@ -14,10 +14,15 @@ export const savePassword = async(req, res) => {
 
 
 export const getAllPasswords = async (req,res) =>{
+    const { page = 1, limit = 6} = req.query;
+    const pageNumber = parseInt(page,10);
+    const limitNumber = parseInt(limit,10);
     const userId = req.query.userId;
     try {
-        const passwords = await Password.find({ userId: userId }).sort({ createdAt: -1 });
-        res.send({ passwords });
+        const totalPasswords=await Password.find({ userId: userId }).countDocuments()
+        const passwords = await Password.find({ userId: userId }).sort({ createdAt: -1 }).skip((pageNumber - 1) * limit)
+        .limit(limitNumber);
+        res.send({ passwords,totalPasswords });
     } catch (error) {
         console.error("Error fetching passwords:", error);
         res.status(500).send({ error: 'Internal Server Error' });

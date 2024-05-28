@@ -11,9 +11,10 @@ const Checkboxes = ({checkboxData,handleCheckboxChange}) => {
           type="checkbox"
           onChange={() => handleCheckboxChange(index)}
           checked={checkbox.state}
-          className="h-5 w-5 rounded focus:ring-2 focus:ring-gray-500"
+          className="h-5 w-5 rounded focus:ring-2 focus:ring-[#2B2D42]-500"
+          
         />
-        <label className="text-sm text-black-400">{checkbox.title}</label>
+        <label className="text-sm text-white">{checkbox.title}</label>
       </div>
         )
       })}

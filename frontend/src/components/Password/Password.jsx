@@ -24,13 +24,14 @@ const Password = ({password,handleRefresh}) => {
   
     return (
         <div className="flex items-center justify-center">
-        <div className="w-full max-w-[36rem]">
+        <div className="w-full max-w-[34rem]">
           <div className="relative">
             <label htmlFor="npm-install-copy-text" className="sr-only">Label</label>
             <input 
+               
               id="npm-install-copy-text" 
               type="text" 
-              className="col-span-6 text-black bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+              className="h-10 col-span-6 text-black bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2.5 py-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" 
               value={password} 
               disabled 
             
