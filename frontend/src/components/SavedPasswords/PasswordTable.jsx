@@ -153,7 +153,7 @@ const PasswordTable = () => {
           <Typography variant="small" color="blue-gray" className="font-normal">
            Page {page} of {totalPages}
           </Typography>
-          <div className="flex gap-2">
+          {totalPages>1&&<div className="flex gap-2">
             <Button variant="outlined" size="sm" onClick={() => {
               const nextPage = page - 1 > 0 ? page - 1 : 1;
               navigate(`?page=${nextPage}`);
@@ -166,7 +166,8 @@ const PasswordTable = () => {
             }}>
               Next
             </Button>
-          </div>
+          </div>}
+          
         </CardFooter>
       </Card>
 </div>
