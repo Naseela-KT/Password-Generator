@@ -8,35 +8,56 @@ import {
 import Password from "./Password";
 import CharacterLength from "./CharacterLength";
 import Checkboxes from "./Checkboxes";
-import {useSelector} from "react-redux"
-import { useState,useEffect } from "react";
-import useGeneratePassword from "../../hooks/useGeneratePassword"
-import {pwdApiRequest} from '../../config/axios'
-import toast from 'react-hot-toast';
-
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import useGeneratePassword from "../../hooks/useGeneratePassword";
+import { pwdApiRequest } from "../../config/axios";
+import toast from "react-hot-toast";
 
 const PasswordCard = () => {
-  let  {userInfo} = useSelector((state) => state.userAuth);
-  const { password, errorMessage, generatePassword } = useGeneratePassword()
-  const [length,setLength]=useState(4)
+  let { userInfo } = useSelector((state) => state.userAuth);
+  const { password, errorMessage, generatePassword } = useGeneratePassword();
+  const [length, setLength] = useState(4);
   const [checkboxData, setCheckboxData] = useState([
     { title: "Uppercase", state: true },
     { title: "Lowercase", state: false },
     { title: "Numbers", state: false },
-    { title: "Symbols", state: false }
-  ])
+    { title: "Symbols", state: false },
+  ]);
 
   const handleCheckboxChange = (i) => {
-    const updatedCheckboxData = [...checkboxData]
-    updatedCheckboxData[i].state = !updatedCheckboxData[i].state
-    setCheckboxData(updatedCheckboxData)
-  }
+    const updatedCheckboxData = [...checkboxData];
+    updatedCheckboxData[i].state = !updatedCheckboxData[i].state;
+    setCheckboxData(updatedCheckboxData);
+  };
 
   useEffect(() => {
+    generatePassword(checkboxData, length);
+  }, [checkboxData, length]);
+
+  const handleSavePassword = async() =>{
+    if(userInfo){
+      const response = await pwdApiRequest({
+        method: 'post',
+        url: '/add',
+        data: {
+          password: password,
+          userId:userInfo._id
+        }
+      },{withCredentials:true})
+      console.log(response)
+      if(response.newPassword){
+        toast.success("Password Saved")
+      }
+    }else{
+      toast.error("Please Login To Save Password")
+    }
+    
+  }
+
+  const handleRefresh = () => {
     generatePassword(checkboxData, length)
-    console.log(".......")
-    console.log(password)
-  }, [checkboxData, length])
+  }
 
   return (
     <div className="px-4 py-6">
@@ -49,17 +70,24 @@ const PasswordCard = () => {
           >
             Password Generator
           </Typography>
-          {password && <Password password={password}/>}
+          {password && <Password password={password} handleRefresh={handleRefresh}/>}
 
           <Card className="mt-2 w-full max-w-[550px] mx-auto shadow-none">
             <CardBody>
               <CharacterLength length={length} setLength={setLength} />
-              <Checkboxes checkboxData={checkboxData} handleCheckboxChange={handleCheckboxChange}/>
+              <Checkboxes
+                checkboxData={checkboxData}
+                handleCheckboxChange={handleCheckboxChange}
+              />
+              {/* Error handling */}
+              {errorMessage && (
+                <div className="text-red-500 mt-5">{errorMessage}</div>
+              )}
             </CardBody>
           </Card>
         </CardBody>
         <CardFooter className="pt-0 text-center">
-          <Button>Save Password</Button>
+          <Button onClick={handleSavePassword}>Save Password</Button>
         </CardFooter>
       </Card>
     </div>

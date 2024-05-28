@@ -1,10 +1,11 @@
 import Password from "../models/password.model.js"
+import mongoose from "mongoose"
 
 
 export const savePassword = async(req, res) => {
-    const {password} = req.body
+    const {password,userId} = req.body
     const newPassword = new Password({
-        userId : req.userId,
+        userId : userId,
         password : password
     })
     await newPassword.save()
@@ -13,9 +14,16 @@ export const savePassword = async(req, res) => {
 
 
 export const getAllPasswords = async (req,res) =>{
-    const passwords = await Password.find({userId:req.userId}).sort({createdAt:-1})
-    res.send({passwords : passwords})
-}
+    const userId = req.query.userId;
+    try {
+        const passwords = await Password.find({ userId: userId }).sort({ createdAt: -1 });
+        res.send({ passwords });
+    } catch (error) {
+        console.error("Error fetching passwords:", error);
+        res.status(500).send({ error: 'Internal Server Error' });
+    }
+    };
+
 
 
 export const deletePassword = async (req,res) =>{

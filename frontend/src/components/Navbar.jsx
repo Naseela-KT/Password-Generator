@@ -19,17 +19,16 @@ import {
   MenuItem,
   Avatar,
 } from "@material-tailwind/react";
-import {Link} from "react-router-dom"
-import {userLogout} from "../redux/authSlice"
-import toast from 'react-hot-toast';
-
+import { Link } from "react-router-dom";
+import { userLogout } from "../redux/authSlice";
+import toast from "react-hot-toast";
 
 export function NavbarDefault() {
   let { userInfo } = useSelector((state) => state.userAuth);
   const { handleSignupOpen } = useContext(AuthContext);
   const [openNav, setOpenNav] = React.useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     window.addEventListener(
@@ -47,10 +46,10 @@ export function NavbarDefault() {
     handleSignupOpen();
   };
 
-  const handleLogout=()=>{
+  const handleLogout = () => {
     dispatch(userLogout());
-    toast.success('Logged Out Successfully');
-  }
+    toast.success("Logged Out Successfully");
+  };
 
   return (
     <>
@@ -67,10 +66,11 @@ export function NavbarDefault() {
               <Menu>
                 <MenuHandler>
                   <Avatar
-                    variant="circular"
-                    alt="tania andrew"
-                    className="cursor-pointer"
-                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                  color="white"
+                    src="/user-default.svg"
+                    alt="avatar"
+                    withBorder={true}
+                    className="p-0.5 cursor-pointer text-white"
                   />
                 </MenuHandler>
                 <MenuList>
@@ -90,12 +90,12 @@ export function NavbarDefault() {
                       />
                     </svg>
                     <Link to="/passwords">
-                    <Typography variant="small" className="font-medium">
-                      Passwords
-                    </Typography>
+                      <Typography variant="small" className="font-medium">
+                        Passwords
+                      </Typography>
                     </Link>
                   </MenuItem>
-                  
+
                   <hr className="my-2 border-blue-gray-50" />
                   <MenuItem className="flex items-center gap-2 ">
                     <svg
@@ -112,7 +112,11 @@ export function NavbarDefault() {
                         fill="#90A4AE"
                       />
                     </svg>
-                    <Typography variant="small" className="font-medium" onClick={handleLogout}>
+                    <Typography
+                      variant="small"
+                      className="font-medium"
+                      onClick={handleLogout}
+                    >
                       Logout
                     </Typography>
                   </MenuItem>
@@ -182,7 +186,13 @@ export function NavbarDefault() {
             <div className="flex items-center gap-x-1">
               {userInfo ? (
                 <>
-                  <Button fullWidth variant="gradient" size="sm" className="" onClick={handleLogout}>
+                  <Button
+                    fullWidth
+                    variant="gradient"
+                    size="sm"
+                    className=""
+                    onClick={handleLogout}
+                  >
                     <span>Logout</span>
                   </Button>
                 </>

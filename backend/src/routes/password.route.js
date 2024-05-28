@@ -4,8 +4,8 @@ import { userAuth } from '../middlewares/auth.middleware.js';
 
 const router = Router();
 
-router.post("/add",userAuth, savePassword)
-router.get("/get",userAuth,getAllPasswords)
-router.delete("/delete",userAuth,deletePassword)
+router.post("/add", savePassword)
+router.get("/getPassword",getAllPasswords)
+router.delete("/delete",deletePassword)
 
 export default router;
