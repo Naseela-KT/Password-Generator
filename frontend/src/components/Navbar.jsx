@@ -203,7 +203,7 @@ export function NavbarDefault() {
                   {" "}
                   <Button
                     fullWidth
-                    variant="text"
+                    variant="gradient"
                     size="sm"
                     color="white"
                     className=""
@@ -211,9 +211,7 @@ export function NavbarDefault() {
                   >
                     <span>Log In</span>
                   </Button>
-                  <Button fullWidth variant="gradient" size="sm" className="">
-                    <span>Sign up</span>
-                  </Button>
+                 
                 </>
               )}
             </div>

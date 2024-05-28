@@ -24,29 +24,38 @@ import {setUserCredentials} from '../../redux/authSlice'
   
 
   const LoginCard=({onClose})=> {
-    const dispatch = useDispatch();
     const {handleSignupOpen}=useContext(AuthContext)
+
+      
+   
+    const dispatch = useDispatch();
+  
     const formik = useFormik({
       initialValues,
       validate,
       onSubmit: async(values) => {
         console.log(values)
+        try {
         const response = await userApiRequest({
           method: 'post',
           url: '/login',
           data:values
         })
+        console.log(response)
+        console.log(response.response.data.message)
         if(response.token){
           toast.success("Login Successfull")
           dispatch(setUserCredentials(response.userData))
           localStorage.setItem('Token',response.token)
           onClose()
         }
-        if(response.error){
-          toast.error(`${response.error.response.data.message}`)
-        }
-      },
-    });
+      }catch (error) {
+        toast.error(error.response.data.message)
+      }
+        
+       
+      }})
+    
 
     return (
       <Card className="w-96 ">

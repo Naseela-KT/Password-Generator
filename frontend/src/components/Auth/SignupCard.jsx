@@ -46,6 +46,9 @@ const SignupCard = ({ onClose }) => {
     setFormErrors(errors);
     console.log(Object.values(errors));
     if (Object.values(errors).every((error) => error === "")) {
+      try {
+        
+      
       const response = await userApiRequest({
         method: 'post',
         url: '/signup',
@@ -56,9 +59,9 @@ const SignupCard = ({ onClose }) => {
         toast.success("User Registered")
         onClose()
       }
-      if(response.error){
-        toast.error(`${response.error}`)
-      }
+    } catch (error) {
+      toast.error(error.response.data.message)
+    }
 
     }
   };
