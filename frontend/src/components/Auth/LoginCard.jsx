@@ -42,8 +42,7 @@ import {setUserCredentials} from '../../redux/authSlice'
           data:values
         })
         console.log(response)
-        console.log(response.response.data.message)
-        if(response.token){
+        if(response){
           toast.success("Login Successfull")
           dispatch(setUserCredentials(response.userData))
           localStorage.setItem('Token',response.token)
