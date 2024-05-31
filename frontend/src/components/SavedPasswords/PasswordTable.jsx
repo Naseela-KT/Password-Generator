@@ -78,7 +78,7 @@ const PasswordTable = () => {
 
   return (
     <>
-    <div className="mb-20">
+  
       <Card className="w-200">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-1 flex items-center justify-between gap-8">
@@ -89,7 +89,7 @@ const PasswordTable = () => {
             </div>
           </div>
         </CardHeader>
-        <CardBody className="overflow-scroll px-0">
+        <CardBody className="overflow-scroll">
           <table className="mt-4 w-full min-w-max table-auto text-left">
             <thead>
               <tr>
@@ -170,7 +170,7 @@ const PasswordTable = () => {
           
         </CardFooter>
       </Card>
-</div>
+
 
       <Dialog open={open} handler={handleOpen} size="xs">
         <DialogBody>Are you sure want to delete this password?</DialogBody>

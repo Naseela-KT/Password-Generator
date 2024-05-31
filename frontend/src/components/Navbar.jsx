@@ -82,7 +82,7 @@ export function NavbarDefault() {
           </Typography>}
           
 
-          <div className="flex items-center gap-x-1">
+          <div className="lg:flex items-center gap-x-1 hidden">
             {userInfo ? (
               <Menu>
                 <MenuHandler>
@@ -134,6 +134,7 @@ export function NavbarDefault() {
               </Menu>
             ) : (
               <>
+              
                 <Button
                   variant="gradient"
                   onClick={openModal}
@@ -188,11 +189,25 @@ export function NavbarDefault() {
             <div className="flex items-center gap-x-1">
               {userInfo ? (
                 <>
+                
+                <Button
+                    fullWidth
+                    variant="outlined"
+                    size="sm"
+                    className="hover:text-black hover:bg-white"
+                    color="white"
+                  >
+                  <Link to="/passwords">
+                    <span>Passwords</span>
+                    </Link>
+                  </Button>
+                
                   <Button
                     fullWidth
-                    variant="gradient"
+                    variant="outlined"
                     size="sm"
-                    className=""
+                    className="hover:text-black hover:bg-white"
+                    color="white"
                     onClick={handleLogout}
                   >
                     <span>Logout</span>

@@ -42,7 +42,7 @@ const Strength = ({ password }) => {
         
       </div>
 
-      <div className="flex space-x-1">
+      <div className="flex space-x-1 ">
         <div
           className={`h-2 w-8 rounded ${
             password.length >= 1 ? "bg-red-500" : "bg-gray-300"

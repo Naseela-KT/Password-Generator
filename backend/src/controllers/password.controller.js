@@ -1,15 +1,31 @@
 import Password from "../models/password.model.js"
-import mongoose from "mongoose"
+import { CustomError } from "../error/custom.error.js";
 
 
 export const savePassword = async(req, res) => {
-    const {password,userId} = req.body
-    const newPassword = new Password({
-        userId : userId,
-        password : password
-    })
-    await newPassword.save()
-    res.send({newPassword})
+    try{
+        const {password,userId} = req.body;
+        const existingPassword=await Password.findOne({password:password});
+        if(existingPassword){
+            throw new CustomError("Password already saved!",400)
+        }
+        const newPassword = new Password({
+            userId : userId,
+            password : password
+        })
+        await newPassword.save()
+        res.send({newPassword})
+    }catch(error){
+        if (error instanceof CustomError) {
+            res.status(error.statusCode).json({ message: error.message });
+          } else {
+            console.error(`Unexpected error in savePassword`, error);
+            res
+              .status(500)
+              .json({ message: "Internal Server Error. Please try again later." });
+          }
+    }
+    
 }
 
 

@@ -36,18 +36,24 @@ const PasswordCard = () => {
 
   const handleSavePassword = async() =>{
     if(userInfo){
-      const response = await pwdApiRequest({
-        method: 'post',
-        url: '/add',
-        data: {
-          password: password,
-          userId:userInfo._id
+      try {
+        const response = await pwdApiRequest({
+          method: 'post',
+          url: '/add',
+          data: {
+            password: password,
+            userId:userInfo._id
+          }
+        },{withCredentials:true})
+        console.log(response)
+        if(response.newPassword){
+          toast.success("Password Saved")
         }
-      },{withCredentials:true})
-      console.log(response)
-      if(response.newPassword){
-        toast.success("Password Saved")
+      } catch (error){
+        console.log(error)
+        toast.error(error.response.data.message)
       }
+      
     }else{
       toast.error("Please Login To Save Password")
     }
